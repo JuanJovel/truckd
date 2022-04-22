@@ -1,0 +1,45 @@
+
+class LoyaltyPoints extends Payment {
+  
+  
+  private int balance;
+  private final int DOLLAR_TO_POINTS = 100;
+  
+  public boolean charge(double amount) {
+    int pointAmount  = toPoints(amount);
+    
+    if (amount > balance) {
+      throw new InsufficientFundsException();
+    }
+    
+    balance -= amount;
+    
+    return true;
+  }
+  
+  public boolean refund(double amount) {
+    int pointAmount  = toPoints(amount);
+    
+    balance += pointAmount;
+    return true;
+    
+  }
+  
+  public int updateBalance(double amount) {
+    int pointAmount  = toPoints(amount);
+    balance += pointAmount;
+    return pointAmount;
+  }
+  
+  public int getBalance() {
+    return balance;
+  }
+  
+  
+  private int toPoints(double amount) {
+    return (int) (amount * DOLLAR_TO_POINTS);
+  }
+  
+  
+  
+}
