@@ -1,0 +1,37 @@
+class Menu {
+    List<FoodItem> foodList;
+
+    public Menu(List<FoodItem> foodList) {
+        this.foodList = foodList;
+    }
+
+    public List<FoodItem> filterMenuByDiet (DietType filteredDiet) {
+        List<FoodItem> filteredList = new ArrayList<FoodItem>();
+        for (FoodItem foodItem : this.foodList) {
+            List<Ingredient> ingredientList = foodItem.getIngredients(); 
+            for (Ingredient ingredient : ingredientList) {
+                if (!ingredient.violatesDiet(filteredDiet)) {
+                    filteredList.add(foodItem);
+                }
+            }
+     }
+
+        return filteredList;
+           
+    }
+
+    public List<FoodItem> filterMenuByAllergens(List<Ingredient> customerAllergens) {
+        List<FoodItem> filteredList = new ArrayList<FoodItem>();
+        for (FoodItem foodItem : this.foodList) {
+            for (Ingredient ingredient : customerAllergens) {
+                if (!foodItem.getIngredients().contains(ingredient)) {
+                    filteredList.add(foodItem);
+                }
+            }
+      
+        }
+
+        return filteredList;
+    }   
+
+}
