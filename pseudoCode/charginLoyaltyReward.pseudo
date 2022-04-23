@@ -1,5 +1,5 @@
 
-class LoyaltyPoints extends Payment {
+class LoyaltyPoints implements Payment {
   
   
   private int balance;
