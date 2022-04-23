@@ -13,3 +13,10 @@
  * Fritz Silva
  * Vignesh Sinha
  * Maxwell Tran
+
+# Screenshots
+
+<p align = "center">
+<img src = "res/screenshots/loginScreen.png">
+<img src = "res/screenshots/homePage.png">
+</p>
