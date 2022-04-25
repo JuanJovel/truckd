@@ -1,0 +1,41 @@
+class userLogin extends User {
+
+    ArrayList<User> users = new ArrayList<User>();
+
+    public boolean login() {
+        Scanner keyboard = new Scanner(System.in);
+
+        // Gets input from users.
+        System.out.println("Enter Username: ");
+        String username = keyboard.nextLine();
+        System.out.println("Enter Password: ");
+        String password = keyboard.nextLine();
+
+        boolean login = false;
+
+        for (User temp : users) {
+            if (username.equals(temp.getUser()) && password.equals(temp.getPass())) {
+                System.out.println("Welcome " + temp.getUser() + " to truckd.");
+                login = true;
+                break;
+            } else {
+                login = false;
+            }
+        }
+
+        if (login == false) {
+            System.out.println("Username or password is incorrect. Please try again.");
+        }
+        
+        return login;
+    }
+
+    public void saveUser(User user) {
+        users.add(user);
+    }
+
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
+}
