@@ -1,0 +1,29 @@
+class ReOrder {
+  ArrayList<Order> savedOrders;
+  
+  public ReOrder() {
+    savedOrders = new ArrayList<Order>();
+  }
+  
+  public boolean addPrevOrder(Order old_order) {
+    savedOrders.add(old_order);
+    return true;
+  }
+  
+  public boolean reOrderPrev(int orderID) {
+    Order prev_order = savedOrders.get(orderID);
+    if (!addToCart(prev_order)) {
+      throw new ItemsUnavailableException();
+    }
+    return true;
+  }
+  
+  public boolean addToCart(Order old_order) {
+    for (FoodItem item : old_order.items_list) {
+      if (!item_isAvailable) {
+        return false;
+      }
+      getUser().addItem(item);
+    }
+  }
+}
