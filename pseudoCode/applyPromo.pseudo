@@ -1,0 +1,27 @@
+class applyPromo extends Promo implements Payment {
+	
+  	public Promo isValidCode(String code) {
+      	Promo ret = getPromo(code);
+      	if (ret == NULL) {
+          	throw new InvalidPromoCodeException();
+        }
+    	return ret;
+    }
+  	
+  	public double getDiscount(String code) {
+      	Promo ret = isValidCode(code);
+      	return ret.discount;
+    }
+  
+  	public void updateOrderTotal(Order ord, String code) {
+      double disc = getDiscount(code);
+      double newTotal = ord.total * (1 - disc);
+      ord.updateTotal(newTotal);
+    }
+  	
+  	public double displaySavings(Order, String code) {
+      double disc = getDiscount(code);
+      double newTotal = ord.total * (1 - disc);
+      return ord.total - newTotal;
+    }
+}
